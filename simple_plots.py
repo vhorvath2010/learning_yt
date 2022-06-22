@@ -12,3 +12,8 @@ yt.SlicePlot(ds, "z", ("gas", "density"), width=(800.0, "kpc")).save()
 yt.ProjectionPlot(ds, "x", ("gas", "density")).save()
 yt.ProjectionPlot(ds, "y", ("gas", "density")).save()
 yt.ProjectionPlot(ds, "z", ("gas", "density")).save()
+
+# Weighted line integral of gas density
+yt.ProjectionPlot(ds, "x", ("gas", "density"), weight_field=("gas", "density")).save()
+yt.ProjectionPlot(ds, "y", ("gas", "density"), weight_field=("gas", "density")).save()
+yt.ProjectionPlot(ds, "z", ("gas", "density"), weight_field=("gas", "density")).save()
