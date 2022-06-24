@@ -1,3 +1,4 @@
+from cmath import phase
 import yt
 
 # Load the dataset.
@@ -12,3 +13,8 @@ for normal in "xyz":
 
     # Weighted line integral of gas density
     yt.ProjectionPlot(ds, normal, ("gas", "density"), weight_field=("gas", "density")).save()
+
+# Create a phase plot of the temperature/density pairs by cell mass
+phase_plot = yt.PhasePlot(ds, ("gas", "density"), ("gas", "temperature"), ("gas", "cell_mass"), weight_field=None)
+phase_plot.set_unit(("gas", "cell_mass"), "Msun")
+phase_plot.save()
