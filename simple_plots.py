@@ -1,8 +1,9 @@
-from cmath import phase
 import yt
 
 # Load the dataset.
 ds = yt.load("data/GasSloshing/sloshing_nomag2_hdf5_plt_cnt_0150")
+
+print("list of gas fields: ", dir(ds.fields.gas))
 
 for normal in "xyz":
     # Create gas density slices in all three axes.
