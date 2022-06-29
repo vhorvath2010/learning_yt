@@ -16,10 +16,15 @@ print("list of gas fields: ", dir(ds.fields.gas))
     #yt.ProjectionPlot(ds, normal, ("gas", "density"), weight_field=("gas", "density")).save()
 
 # Create a phase plot of the temperature/density pairs by cell mass
-#phase_plot = yt.PhasePlot(ds, ("gas", "density"), ("gas", "temperature"), ("gas", "cell_mass"), weight_field=None)
-#phase_plot.set_unit(("gas", "cell_mass"), "Msun")
-#phase_plot.save()
+# phase_plot = yt.PhasePlot(ds, ("gas", "density"), ("gas", "temperature"), ("gas", "cell_mass"), weight_field=None)
+# phase_plot.set_unit(("gas", "cell_mass"), "Msun")
+# phase_plot.save()
 
 # Create a line plot of gas temperature vs velocity_magnitude
-line_plot = yt.LinePlot(ds, [("gas", "temperature"), ("gas", "velocity_magnitude")], (-0.1, -0.1, -0.1), (0.1, 0.1, 0.1), 1000)
-line_plot.save()
+# line_plot = yt.LinePlot(ds, [("gas", "temperature"), ("gas", "velocity_magnitude")], (-0.1, -0.1, -0.1), (0.1, 0.1, 0.1), 1000)
+# line_plot.save()
+
+# Create a probability distrubtion function of the earlier tempreature density phase plots
+pdf_plot = yt.PhasePlot(ds, ("gas", "density"), ("gas", "temperature"), ("gas", "cell_mass"), weight_field=None, fractional=True)
+pdf_plot.set_unit(("gas", "cell_mass"), "Msun")
+pdf_plot.save()
