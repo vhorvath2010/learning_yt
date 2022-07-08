@@ -21,10 +21,15 @@ print("list of gas fields: ", dir(ds.fields.gas))
 # phase_plot.save("./images_/phase")
 
 # Create a line plot of gas temperature vs velocity_magnitude
-line_plot = yt.LinePlot(ds, [("gas", "temperature"), ("gas", "velocity_magnitude")], (-0.1, -0.1, -0.1), (0.1, 0.1, 0.1), 1000)
-line_plot.save("./images/temp_vs_vel")
+# line_plot = yt.LinePlot(ds, [("gas", "temperature"), ("gas", "velocity_magnitude")], (-0.1, -0.1, -0.1), (0.1, 0.1, 0.1), 1000)
+# line_plot.save("./images/temp_vs_vel")
 
 # Create a probability distrubtion function of the earlier tempreature density phase plots
-pdf_plot = yt.PhasePlot(ds, ("gas", "density"), ("gas", "temperature"), ("gas", "cell_mass"), weight_field=None, fractional=True)
-pdf_plot.set_unit(("gas", "cell_mass"), "Msun")
-pdf_plot.save("./images/DensityTempMassPDF")
+# pdf_plot = yt.PhasePlot(ds, ("gas", "density"), ("gas", "temperature"), ("gas", "cell_mass"), weight_field=None, fractional=True)
+# pdf_plot.set_unit(("gas", "cell_mass"), "Msun")
+# pdf_plot.save("./images/DensityTempMassPDF")
+
+# Find the average density of the region
+ad = ds.all_data() # region covering the entire box
+avg_density = ad.quantities.weighted_average_quantity(("gas", "density"), ("gas", "density"))
+print(avg_density)
